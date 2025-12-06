@@ -16,7 +16,11 @@ layout: default
     <div class="posts-grid">
       {% for post in category_posts %}
       <article class="post-card">
+        {% if post.featured_image %}
+        <div class="post-card-image" style="background-image: url('/assets/images/posts/{{ post.featured_image }}');"></div>
+        {% else %}
         <div class="post-card-image category-{{ post.categories.first }}"></div>
+        {% endif %}
         <div class="post-card-header">
           {% if post.categories.first %}
             <span class="post-category">{{ post.categories.first | capitalize }}</span>

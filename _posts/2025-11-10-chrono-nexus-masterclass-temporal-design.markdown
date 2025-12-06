@@ -4,6 +4,7 @@ title:  "Chrono Nexus: A Masterclass in Temporal Design"
 date:   2025-11-10 11:20:00 -0500
 categories: review
 score: 9
+featured_image: chrono-nexus-hero.jpg
 ---
 
 Time manipulation in video games is nothing new. We've been rewinding, pausing, and slowing down time since *Prince of Persia: The Sands of Time* first introduced the mechanic over two decades ago. But *Chrono Nexus*, the latest puzzle-platformer from Temporal Studios, does something remarkable: it doesn't just use time manipulation as a tool—it makes time itself the central puzzle, the primary mechanic, and the philosophical core of the entire experience.

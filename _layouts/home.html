@@ -7,7 +7,11 @@ layout: default
   {% assign featured_post = site.posts.first %}
   {% if featured_post %}
   <section class="hero-section">
+    {% if featured_post.featured_image %}
+    <div class="hero-image" style="background-image: url('/assets/images/posts/{{ featured_post.featured_image }}');"></div>
+    {% else %}
     <div class="hero-image-placeholder"></div>
+    {% endif %}
     <div class="hero-content">
       <div class="hero-category">
         {% if featured_post.categories.first %}
@@ -41,7 +45,11 @@ layout: default
         {% for post in site.posts limit: 6 %}
           {% unless forloop.first %}
           <article class="post-card">
+            {% if post.featured_image %}
+            <div class="post-card-image" style="background-image: url('/assets/images/posts/{{ post.featured_image }}');"></div>
+            {% else %}
             <div class="post-card-image category-{{ post.categories.first }}"></div>
+            {% endif %}
             <div class="post-card-header">
               {% if post.categories.first %}
                 <span class="post-category">{{ post.categories.first | capitalize }}</span>
@@ -85,7 +93,11 @@ layout: default
         <div class="posts-grid">
           {% for post in review_posts limit: 3 %}
           <article class="post-card">
+            {% if post.featured_image %}
+            <div class="post-card-image" style="background-image: url('/assets/images/posts/{{ post.featured_image }}');"></div>
+            {% else %}
             <div class="post-card-image category-review"></div>
+            {% endif %}
             <div class="post-card-header">
               <span class="post-category">Review</span>
               {% if post.score %}
@@ -122,7 +134,11 @@ layout: default
         <div class="posts-grid">
           {% for post in essay_posts limit: 3 %}
           <article class="post-card">
+            {% if post.featured_image %}
+            <div class="post-card-image" style="background-image: url('/assets/images/posts/{{ post.featured_image }}');"></div>
+            {% else %}
             <div class="post-card-image category-essay"></div>
+            {% endif %}
             <div class="post-card-header">
               <span class="post-category">Essay</span>
             </div>
@@ -156,7 +172,11 @@ layout: default
         <div class="posts-grid">
           {% for post in philosophy_posts limit: 3 %}
           <article class="post-card">
+            {% if post.featured_image %}
+            <div class="post-card-image" style="background-image: url('/assets/images/posts/{{ post.featured_image }}');"></div>
+            {% else %}
             <div class="post-card-image category-philosophy"></div>
+            {% endif %}
             <div class="post-card-header">
               <span class="post-category">Philosophy</span>
             </div>

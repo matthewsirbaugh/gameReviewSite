@@ -3,6 +3,7 @@ layout: post
 title:  "The Ethics of Player Agency: Choice, Consequence, and Moral Responsibility in Interactive Fiction"
 date:   2025-10-28 09:15:00 -0500
 categories: philosophy
+featured_image: ethics-agency-hero.jpg
 ---
 
 There's a moment in *The Witcher 3* that has stuck with me for years. Early in the game, you're asked to choose between two terrible options: allow a group of villagers to be killed, or intervene and potentially cause even greater harm. The game doesn't tell you which choice is "correct." It simply presents the dilemma and asks you to decide. Hours later, you discover the consequences of your choice, and they're rarely what you expected.

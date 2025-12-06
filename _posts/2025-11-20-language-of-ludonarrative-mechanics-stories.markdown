@@ -3,6 +3,7 @@ layout: post
 title:  "The Language of Ludonarrative: When Mechanics Tell Stories"
 date:   2025-11-20 16:45:00 -0500
 categories: essay
+featured_image: ludonarrative-mechanics-hero.jpg
 ---
 
 The term "ludonarrative dissonance" has become something of a buzzword in game criticism, often used to describe moments when a game's mechanics conflict with its narrative. A character who preaches pacifism while the player mows down hundreds of enemies, or a story about resource scarcity in a game with abundant loot drops—these are the examples we point to when discussing the disconnect between what a game says and what it does.

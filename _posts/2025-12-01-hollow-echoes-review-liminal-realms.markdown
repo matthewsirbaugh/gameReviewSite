@@ -4,6 +4,7 @@ title:  "Hollow Echoes: A Review of Liminal Realms"
 date:   2025-12-01 14:30:00 -0500
 categories: review
 score: 8
+featured_image: hollow-echoes-hero.jpg
 ---
 
 There's something profoundly unsettling about *Liminal Realms*, the latest offering from indie studio Echo Collective. It's not the kind of unease that comes from jump scares or grotesque imagery—though the game has its share of both—but rather a deeper, more existential disquiet that lingers long after you've set down the controller. This is a game that understands memory as both archive and prison, and it uses that understanding to craft one of the most emotionally resonant experiences I've encountered this year.

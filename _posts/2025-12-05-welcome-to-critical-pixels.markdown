@@ -4,6 +4,7 @@ title:  "The Critical Pixel's first post!"
 date:   2025-12-05 22:22:20 -0500
 categories: site_update
 score: 10
+featured_image: hero-image.png
 ---
 
 If you're reading this... welcome! 
