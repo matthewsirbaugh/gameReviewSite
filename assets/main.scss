@@ -1,0 +1,555 @@
+---
+---
+
+// Variables
+$font-serif: 'Georgia', 'Times New Roman', serif;
+$font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+
+$color-bg: #1a1a1a;
+$color-bg-light: #2a2a2a;
+$color-text: #e8e8e8;
+$color-text-muted: #a0a0a0;
+$color-accent: #4a9eff;
+$color-accent-hover: #6bb0ff;
+$color-border: #3a3a3a;
+$color-score-high: #4ade80;
+$color-score-medium: #fbbf24;
+$color-score-low: #f87171;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 6rem;
+
+$max-width: 1200px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+
+// Reset and Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: $color-text;
+  background-color: $color-bg;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-sans;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: $spacing-sm;
+  color: $color-text;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-accent-hover;
+  }
+}
+
+p {
+  margin-bottom: $spacing-sm;
+}
+
+// Container
+.container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $spacing-sm;
+  }
+}
+
+// Header
+.site-header {
+  background-color: $color-bg-light;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-md 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background-color: rgba(26, 26, 26, 0.95);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.site-title {
+  h1 {
+    font-size: 1.75rem;
+    margin: 0;
+    color: $color-text;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.site-nav {
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+
+    @media (max-width: $breakpoint-md) {
+      gap: $spacing-sm;
+    }
+  }
+
+  .nav-link {
+    color: $color-text-muted;
+    font-family: $font-sans;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: $spacing-xs 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: $color-text;
+      border-bottom-color: $color-accent;
+    }
+  }
+}
+
+// Main Content
+.page-content {
+  flex: 1;
+  width: 100%;
+}
+
+// Home Page Styles
+.home-page {
+  width: 100%;
+}
+
+// Hero Section
+.hero-section {
+  background: linear-gradient(135deg, $color-bg-light 0%, $color-bg 100%);
+  padding: $spacing-xl $spacing-md;
+  margin-bottom: $spacing-lg;
+  border-bottom: 1px solid $color-border;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-lg $spacing-sm;
+  }
+}
+
+.hero-content {
+  max-width: $max-width;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.hero-category {
+  display: flex;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.category-badge,
+.score-badge {
+  display: inline-block;
+  padding: $spacing-xs $spacing-sm;
+  font-family: $font-sans;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+}
+
+.category-badge {
+  background-color: $color-accent;
+  color: $color-bg;
+}
+
+.score-badge {
+  background-color: $color-score-high;
+  color: $color-bg;
+}
+
+.hero-title {
+  margin-bottom: $spacing-md;
+  
+  a {
+    color: $color-text;
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 2rem;
+    }
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.hero-excerpt {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: $color-text-muted;
+  margin-bottom: $spacing-md;
+  max-width: 700px;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.125rem;
+  }
+}
+
+.hero-meta {
+  font-family: $font-sans;
+  font-size: 0.9rem;
+  color: $color-text-muted;
+  margin-bottom: $spacing-md;
+}
+
+.hero-read-more {
+  display: inline-block;
+  font-family: $font-sans;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: $spacing-sm $spacing-md;
+  background-color: $color-accent;
+  color: $color-bg;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $color-accent-hover;
+    transform: translateX(4px);
+  }
+}
+
+// Section Styles
+.latest-posts-section,
+.category-sections {
+  padding: $spacing-lg $spacing-md;
+  margin-bottom: $spacing-lg;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: $spacing-md;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 2rem;
+  }
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-md;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.view-all-link {
+  font-family: $font-sans;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-muted;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+// Posts Grid
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+  }
+}
+
+// Post Card
+.post-card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  padding: $spacing-md;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border-color: $color-accent;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.post-card-header {
+  display: flex;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.post-category {
+  display: inline-block;
+  padding: $spacing-xs $spacing-sm;
+  font-family: $font-sans;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background-color: $color-border;
+  color: $color-text-muted;
+  border-radius: 4px;
+}
+
+.post-score {
+  display: inline-block;
+  padding: $spacing-xs $spacing-sm;
+  font-family: $font-sans;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background-color: $color-score-high;
+  color: $color-bg;
+  border-radius: 4px;
+}
+
+.post-card-title {
+  margin-bottom: $spacing-sm;
+  
+  a {
+    color: $color-text;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: 600;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.post-card-excerpt {
+  color: $color-text-muted;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: $spacing-sm;
+  flex: 1;
+}
+
+.post-card-meta {
+  font-family: $font-sans;
+  font-size: 0.85rem;
+  color: $color-text-muted;
+  margin-top: auto;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $color-border;
+}
+
+// Category Section
+.category-section {
+  margin-bottom: $spacing-xl;
+}
+
+// Footer
+.site-footer {
+  background-color: $color-bg-light;
+  border-top: 1px solid $color-border;
+  padding: $spacing-lg $spacing-md;
+  margin-top: $spacing-xl;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-lg;
+  margin-bottom: $spacing-md;
+}
+
+.footer-section {
+  h3, h4 {
+    font-size: 1.25rem;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: $color-text-muted;
+    font-size: 0.95rem;
+  }
+}
+
+.social-links {
+  list-style: none;
+  
+  li {
+    margin-bottom: $spacing-xs;
+  }
+
+  a {
+    color: $color-text-muted;
+    font-family: $font-sans;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.footer-bottom {
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-border;
+  text-align: center;
+
+  p {
+    color: $color-text-muted;
+    font-size: 0.85rem;
+    font-family: $font-sans;
+  }
+}
+
+// Post Page Styles (for existing post layout)
+.post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-lg $spacing-md;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+.post-header {
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid $color-border;
+}
+
+.post-title {
+  font-size: 3rem;
+  margin-bottom: $spacing-md;
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 2rem;
+  }
+}
+
+.post-meta {
+  font-family: $font-sans;
+  font-size: 0.95rem;
+  color: $color-text-muted;
+}
+
+.post-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+
+  h2, h3, h4 {
+    margin-top: $spacing-md;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    margin-bottom: $spacing-md;
+  }
+
+  a {
+    border-bottom: 1px solid $color-accent;
+    
+    &:hover {
+      border-bottom-color: $color-accent-hover;
+    }
+  }
+}
+
+// Page Styles
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-lg $spacing-md;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
