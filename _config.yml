@@ -24,10 +24,10 @@ description: >- # this means to ignore newlines until "baseurl:"
   The Critical Pixels is a video game and pop culture review site 
   focused on quality and depth. Topics include game design, philosophy, 
   and in-depth game analysis. We're going for Roger Ebert meets PewDiePie. 
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/gameReviewSite" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username:
-github_username:
+github_username:matthewsirbaugh
 
 # Build settings
 theme: minima
