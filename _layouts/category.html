@@ -16,6 +16,7 @@ layout: default
     <div class="posts-grid">
       {% for post in category_posts %}
       <article class="post-card">
+        <div class="post-card-image category-{{ post.categories.first }}"></div>
         <div class="post-card-header">
           {% if post.categories.first %}
             <span class="post-category">{{ post.categories.first | capitalize }}</span>
@@ -24,16 +25,18 @@ layout: default
             <span class="post-score">{{ post.score }}/10</span>
           {% endif %}
         </div>
-        <h3 class="post-card-title">
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h3>
-        <p class="post-card-excerpt">
-          {{ post.excerpt | strip_html | truncatewords: 20 }}
-        </p>
-        <div class="post-card-meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}">
-            {{ post.date | date: "%B %-d, %Y" }}
-          </time>
+        <div class="post-card-body">
+          <h3 class="post-card-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h3>
+          <p class="post-card-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 20 }}
+          </p>
+          <div class="post-card-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%B %-d, %Y" }}
+            </time>
+          </div>
         </div>
       </article>
       {% endfor %}

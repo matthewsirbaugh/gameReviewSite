@@ -3,6 +3,10 @@ layout: default
 ---
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
+  {% if page.categories.first %}
+  <div class="post-header-image category-{{ page.categories.first }}"></div>
+  {% endif %}
+  
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
     <p class="post-meta">
