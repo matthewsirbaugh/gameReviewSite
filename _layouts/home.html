@@ -76,7 +76,7 @@ layout: default
       <div class="category-section">
         <div class="category-header">
           <h2 class="section-title">Reviews</h2>
-          <a href="/reviews/" class="view-all-link">View All →</a>
+          <a href="{{ '/reviews/' | relative_url }}" class="view-all-link">View All →</a>
         </div>
         <div class="posts-grid">
           {% for post in review_posts limit: 3 %}
@@ -110,7 +110,7 @@ layout: default
       <div class="category-section">
         <div class="category-header">
           <h2 class="section-title">Essays</h2>
-          <a href="/essays/" class="view-all-link">View All →</a>
+          <a href="{{ '/essays/' | relative_url }}" class="view-all-link">View All →</a>
         </div>
         <div class="posts-grid">
           {% for post in essay_posts limit: 3 %}
@@ -141,7 +141,7 @@ layout: default
       <div class="category-section">
         <div class="category-header">
           <h2 class="section-title">Philosophy</h2>
-          <a href="/philosophy/" class="view-all-link">View All →</a>
+          <a href="{{ '/philosophy/' | relative_url }}" class="view-all-link">View All →</a>
         </div>
         <div class="posts-grid">
           {% for post in philosophy_posts limit: 3 %}
