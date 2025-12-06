@@ -3,7 +3,11 @@ layout: default
 ---
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-  {% if page.categories.first %}
+  {% if page.featured_image %}
+  <div class="post-header-image" style="background-image: url('/assets/images/posts/{{ page.featured_image }}');">
+    <div class="post-header-overlay"></div>
+  </div>
+  {% elsif page.categories.first %}
   <div class="post-header-image category-{{ page.categories.first }}"></div>
   {% endif %}
   

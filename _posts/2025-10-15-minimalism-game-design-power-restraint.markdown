@@ -3,6 +3,7 @@ layout: post
 title:  "Minimalism in Game Design: The Power of Restraint"
 date:   2025-10-15 13:00:00 -0500
 categories: essay
+featured_image: minimalism-design-hero.jpg
 ---
 
 In an industry increasingly dominated by games that promise "hundreds of hours of content" and "thousands of collectibles," there's something radical about a game that does less. Not less well, but simply less. A game that understands that sometimes, the most powerful design choice is the one you don't make.
