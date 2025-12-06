@@ -6,16 +6,36 @@ $font-serif: 'Georgia', 'Times New Roman', serif;
 $font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 $font-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 
-$color-bg: #1a1a1a;
-$color-bg-light: #2a2a2a;
-$color-text: #e8e8e8;
-$color-text-muted: #a0a0a0;
-$color-accent: #4a9eff;
-$color-accent-hover: #6bb0ff;
-$color-border: #3a3a3a;
-$color-score-high: #4ade80;
-$color-score-medium: #fbbf24;
-$color-score-low: #f87171;
+// Sophisticated Color Palette
+$color-bg: #0f0f13;
+$color-bg-light: #1a1a24;
+$color-bg-lighter: #252530;
+$color-text: #f0f0f5;
+$color-text-muted: #b8b8c8;
+$color-text-dim: #8a8a9a;
+
+// Refined accent colors (sophisticated blues/purples)
+$color-accent: #6366f1;
+$color-accent-hover: #818cf8;
+$color-accent-light: #a5b4fc;
+$color-accent-dark: #4f46e5;
+
+// Border and surface colors
+$color-border: #2a2a35;
+$color-border-light: #3a3a45;
+
+// Score colors (refined to match palette)
+$color-score-high: #10b981;
+$color-score-medium: #f59e0b;
+$color-score-low: #ef4444;
+
+// Gradient colors for placeholders
+$gradient-review-start: #6366f1;
+$gradient-review-end: #8b5cf6;
+$gradient-essay-start: #ec4899;
+$gradient-essay-end: #f43f5e;
+$gradient-philosophy-start: #06b6d4;
+$gradient-philosophy-end: #3b82f6;
 
 $spacing-xs: 0.5rem;
 $spacing-sm: 1rem;
@@ -45,10 +65,26 @@ body {
   font-size: 1.125rem;
   line-height: 1.8;
   color: $color-text;
-  background-color: $color-bg;
+  background: linear-gradient(135deg, $color-bg 0%, #151520 50%, $color-bg 100%);
+  background-attachment: fixed;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 // Typography
@@ -58,22 +94,29 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
   margin-bottom: $spacing-sm;
   color: $color-text;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  background: linear-gradient(135deg, $color-text 0%, $color-text-muted 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 h2 {
   font-size: 2rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 h3 {
   font-size: 1.5rem;
   font-weight: 600;
+  letter-spacing: -0.005em;
 }
 
 a {
@@ -103,14 +146,16 @@ p {
 
 // Header
 .site-header {
-  background-color: $color-bg-light;
-  border-bottom: 1px solid $color-border;
+  background: rgba(15, 15, 19, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
   padding: $spacing-md 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(10px);
-  background-color: rgba(26, 26, 26, 0.95);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
 }
 
 .header-content {
@@ -161,11 +206,26 @@ p {
     letter-spacing: 0.05em;
     padding: $spacing-xs 0;
     border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, $color-accent, $color-accent-light);
+      transition: width 0.3s ease;
+    }
 
     &:hover {
       color: $color-text;
-      border-bottom-color: $color-accent;
+      
+      &::before {
+        width: 100%;
+      }
     }
   }
 }
@@ -174,6 +234,8 @@ p {
 .page-content {
   flex: 1;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 // Home Page Styles
@@ -183,20 +245,62 @@ p {
 
 // Hero Section
 .hero-section {
-  background: linear-gradient(135deg, $color-bg-light 0%, $color-bg 100%);
+  position: relative;
   padding: $spacing-xl $spacing-md;
   margin-bottom: $spacing-lg;
-  border-bottom: 1px solid $color-border;
+  overflow: hidden;
 
   @media (max-width: $breakpoint-md) {
     padding: $spacing-lg $spacing-sm;
   }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    z-index: 0;
+  }
+}
+
+.hero-image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, $gradient-review-start 0%, $gradient-review-end 100%);
+  opacity: 0.15;
+  z-index: 0;
+  animation: gradientShift 8s ease infinite;
+  background-size: 200% 200%;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .hero-content {
-  max-width: $max-width;
-  margin: 0 auto;
   max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-category {
@@ -215,17 +319,22 @@ p {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  border-radius: 4px;
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
 .category-badge {
-  background-color: $color-accent;
-  color: $color-bg;
+  background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
+  color: $color-text;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .score-badge {
-  background-color: $color-score-high;
+  background: linear-gradient(135deg, $color-score-high 0%, darken($color-score-high, 10%) 100%);
   color: $color-bg;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .hero-title {
@@ -237,13 +346,23 @@ p {
     line-height: 1.2;
     font-weight: 700;
     letter-spacing: -0.02em;
+    transition: all 0.3s ease;
+    display: inline-block;
+    background: linear-gradient(135deg, $color-text 0%, $color-text-muted 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 
     @media (max-width: $breakpoint-md) {
       font-size: 2rem;
     }
 
     &:hover {
-      color: $color-accent;
+      background: linear-gradient(135deg, $color-accent-light 0%, $color-accent 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transform: translateX(4px);
     }
   }
 }
@@ -275,14 +394,34 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding: $spacing-sm $spacing-md;
-  background-color: $color-accent;
-  color: $color-bg;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  background: linear-gradient(135deg, $color-accent 0%, $color-accent-dark 100%);
+  color: $color-text;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
 
   &:hover {
-    background-color: $color-accent-hover;
+    background: linear-gradient(135deg, $color-accent-hover 0%, $color-accent 100%);
     transform: translateX(4px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    
+    &::before {
+      left: 100%;
+    }
   }
 }
 
@@ -302,6 +441,19 @@ p {
   margin-bottom: $spacing-md;
   font-weight: 700;
   letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, $color-accent, $color-accent-light);
+    border-radius: 2px;
+  }
 
   @media (max-width: $breakpoint-md) {
     font-size: 2rem;
@@ -324,10 +476,28 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: $color-text-muted;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $color-accent, $color-accent-light);
+    transition: width 0.3s ease;
+  }
 
   &:hover {
-    color: $color-accent;
+    color: $color-accent-light;
+    transform: translateX(4px);
+    
+    &::after {
+      width: 100%;
+    }
   }
 }
 
@@ -346,19 +516,64 @@ p {
 
 // Post Card
 .post-card {
-  background-color: $color-bg-light;
+  background: linear-gradient(135deg, $color-bg-light 0%, $color-bg-lighter 100%);
   border: 1px solid $color-border;
-  border-radius: 8px;
-  padding: $spacing-md;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  padding: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
 
   &:hover {
     border-color: $color-accent;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.3), 0 4px 16px rgba(0, 0, 0, 0.4);
   }
+}
+
+.post-card-image {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, $gradient-review-start 0%, $gradient-review-end 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+      linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+  }
+  
+  // Category-specific gradients
+  &.category-review {
+    background: linear-gradient(135deg, $gradient-review-start 0%, $gradient-review-end 100%);
+  }
+  
+  &.category-essay {
+    background: linear-gradient(135deg, $gradient-essay-start 0%, $gradient-essay-end 100%);
+  }
+  
+  &.category-philosophy {
+    background: linear-gradient(135deg, $gradient-philosophy-start 0%, $gradient-philosophy-end 100%);
+  }
+}
+
+.post-card-body {
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .post-card-header {
@@ -366,6 +581,11 @@ p {
   gap: $spacing-sm;
   margin-bottom: $spacing-sm;
   flex-wrap: wrap;
+  position: absolute;
+  top: $spacing-sm;
+  left: $spacing-sm;
+  right: $spacing-sm;
+  z-index: 2;
 }
 
 .post-category {
@@ -376,9 +596,12 @@ p {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  background-color: $color-border;
-  color: $color-text-muted;
-  border-radius: 4px;
+  background: rgba(99, 102, 241, 0.2);
+  backdrop-filter: blur(10px);
+  color: $color-text;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .post-score {
@@ -387,9 +610,11 @@ p {
   font-family: $font-sans;
   font-size: 0.7rem;
   font-weight: 600;
-  background-color: $color-score-high;
+  background: linear-gradient(135deg, $color-score-high 0%, darken($color-score-high, 10%) 100%);
   color: $color-bg;
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
 
 .post-card-title {
@@ -400,9 +625,27 @@ p {
     font-size: 1.5rem;
     line-height: 1.3;
     font-weight: 600;
+    transition: color 0.3s ease;
+    display: inline-block;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, $color-accent, $color-accent-light);
+      transition: width 0.3s ease;
+    }
 
     &:hover {
-      color: $color-accent;
+      color: $color-accent-light;
+      
+      &::after {
+        width: 100%;
+      }
     }
   }
 }
@@ -431,10 +674,21 @@ p {
 
 // Footer
 .site-footer {
-  background-color: $color-bg-light;
+  background: linear-gradient(180deg, transparent 0%, $color-bg-light 100%);
   border-top: 1px solid $color-border;
   padding: $spacing-lg $spacing-md;
   margin-top: $spacing-xl;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $color-accent, transparent);
+  }
 }
 
 .footer-content {
@@ -491,23 +745,82 @@ p {
 .post {
   max-width: 800px;
   margin: 0 auto;
-  padding: $spacing-lg $spacing-md;
+  padding: 0;
+  position: relative;
 
   @media (max-width: $breakpoint-md) {
-    padding: $spacing-md $spacing-sm;
+    padding: 0;
+  }
+}
+
+.post-header-image {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, $gradient-review-start 0%, $gradient-review-end 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  margin-bottom: $spacing-lg;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+      linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  }
+  
+  &.category-review {
+    background: linear-gradient(135deg, $gradient-review-start 0%, $gradient-review-end 100%);
+  }
+  
+  &.category-essay {
+    background: linear-gradient(135deg, $gradient-essay-start 0%, $gradient-essay-end 100%);
+  }
+  
+  &.category-philosophy {
+    background: linear-gradient(135deg, $gradient-philosophy-start 0%, $gradient-philosophy-end 100%);
+  }
+}
+
+.post-header {
+  padding: $spacing-lg $spacing-md 0;
+  
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md $spacing-sm 0;
   }
 }
 
 .post-header {
   margin-bottom: $spacing-lg;
   padding-bottom: $spacing-md;
-  border-bottom: 1px solid $color-border;
+  border-bottom: 2px solid $color-border;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, $color-accent, transparent);
+  }
 }
 
 .post-title {
   font-size: 3rem;
   margin-bottom: $spacing-md;
   line-height: 1.2;
+  background: linear-gradient(135deg, $color-text 0%, $color-text-muted 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 
   @media (max-width: $breakpoint-md) {
     font-size: 2rem;
@@ -523,6 +836,11 @@ p {
 .post-content {
   font-size: 1.125rem;
   line-height: 1.8;
+  padding: 0 $spacing-md $spacing-lg;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $spacing-sm $spacing-md;
+  }
 
   h2, h3, h4 {
     margin-top: $spacing-md;
@@ -534,11 +852,23 @@ p {
   }
 
   a {
-    border-bottom: 1px solid $color-accent;
+    border-bottom: 2px solid $color-accent;
+    transition: all 0.3s ease;
     
     &:hover {
-      border-bottom-color: $color-accent-hover;
+      border-bottom-color: $color-accent-light;
+      color: $color-accent-light;
     }
+  }
+  
+  strong {
+    color: $color-text;
+    font-weight: 600;
+  }
+  
+  em {
+    color: $color-text-muted;
+    font-style: italic;
   }
 }
 
@@ -553,3 +883,61 @@ p {
   }
 }
 
+// Category Archive Page Styles
+.category-page {
+  width: 100%;
+  padding: $spacing-lg $spacing-md;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+.category-page-header {
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid $color-border;
+}
+
+.category-title {
+  font-size: 3rem;
+  margin-bottom: $spacing-md;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, $color-text 0%, $color-text-muted 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, $color-accent, $color-accent-light);
+    border-radius: 2px;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 2.5rem;
+  }
+}
+
+.category-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: $color-text-muted;
+  max-width: 700px;
+}
+
+.no-posts {
+  text-align: center;
+  padding: $spacing-xl $spacing-md;
+  color: $color-text-muted;
+  font-size: 1.125rem;
+  font-style: italic;
+}
